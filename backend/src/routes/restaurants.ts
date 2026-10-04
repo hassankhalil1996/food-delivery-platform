@@ -24,13 +24,13 @@ router.post("/", async (req, res) => {
 });
 
 // Get restaurant by ID
-router.get("/:id", async (req, res) => {
+router.get("/:restaurantId", async (req, res) => {
   try {
-    const id = Number(req.params.id);
+    const restaurantId = Number(req.params.restaurantId);
 
     const restaurant = await prisma.restaurant.findUnique({
       where: {
-        id,
+        id: restaurantId,
       },
     });
 
@@ -50,9 +50,9 @@ router.get("/:id", async (req, res) => {
 });
 
 // Add menu item to restaurant
-router.post("/:id/menu-items", async (req, res) => {
+router.post("/:restaurantId/menu-items", async (req, res) => {
   try {
-    const restaurantId = Number(req.params.id);
+    const restaurantId = Number(req.params.restaurantId);
 
     const {
       name,
@@ -81,9 +81,9 @@ router.post("/:id/menu-items", async (req, res) => {
 });
 
 // Get restaurant's menu
-router.get("/:id/menu-items", async (req, res) => {
+router.get("/:restaurantId/menu-items", async (req, res) => {
   try {
-    const restaurantId = Number(req.params.id);
+    const restaurantId = Number(req.params.restaurantId);
 
     const menuItems = await prisma.menuItem.findMany({
       where: {
@@ -96,6 +96,36 @@ router.get("/:id/menu-items", async (req, res) => {
     console.error(error);
     res.status(500).json({
       error: "Failed to get menu items",
+    });
+  }
+});
+
+// Get restaurant's orders
+router.get("/:restaurantId/orders", async (req, res) => {
+  try {
+    const restaurantId = Number(req.params.restaurantId);
+
+    const orders = await prisma.order.findMany({
+      where: {
+        restaurantId,
+      },
+      include: {
+        items: {
+          include: {
+            menuItem: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    res.json(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Failed to get restaurant orders",
     });
   }
 });
