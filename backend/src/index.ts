@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 
 import restaurantsRouter from "./routes/restaurants.js";
+import ordersRouter from "./routes/orders.js";
+
+
 
 const app = express();
 
@@ -13,6 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/restaurants", restaurantsRouter);
+app.use("/orders", ordersRouter);
 
 
 app.listen(3000, () => {
