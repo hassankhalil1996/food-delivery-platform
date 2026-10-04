@@ -46,6 +46,7 @@ export type OrderMinAggregateOutputType = {
   phone: string | null
   address: string | null
   createdAt: Date | null
+  estimatedReadyAt: Date | null
   restaurantId: number | null
 }
 
@@ -57,6 +58,7 @@ export type OrderMaxAggregateOutputType = {
   phone: string | null
   address: string | null
   createdAt: Date | null
+  estimatedReadyAt: Date | null
   restaurantId: number | null
 }
 
@@ -68,6 +70,7 @@ export type OrderCountAggregateOutputType = {
   phone: number
   address: number
   createdAt: number
+  estimatedReadyAt: number
   restaurantId: number
   _all: number
 }
@@ -93,6 +96,7 @@ export type OrderMinAggregateInputType = {
   phone?: true
   address?: true
   createdAt?: true
+  estimatedReadyAt?: true
   restaurantId?: true
 }
 
@@ -104,6 +108,7 @@ export type OrderMaxAggregateInputType = {
   phone?: true
   address?: true
   createdAt?: true
+  estimatedReadyAt?: true
   restaurantId?: true
 }
 
@@ -115,6 +120,7 @@ export type OrderCountAggregateInputType = {
   phone?: true
   address?: true
   createdAt?: true
+  estimatedReadyAt?: true
   restaurantId?: true
   _all?: true
 }
@@ -213,6 +219,7 @@ export type OrderGroupByOutputType = {
   phone: string
   address: string
   createdAt: Date
+  estimatedReadyAt: Date | null
   restaurantId: number
   _count: OrderCountAggregateOutputType | null
   _avg: OrderAvgAggregateOutputType | null
@@ -247,6 +254,7 @@ export type OrderWhereInput = {
   phone?: Prisma.StringFilter<"Order"> | string
   address?: Prisma.StringFilter<"Order"> | string
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
+  estimatedReadyAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   restaurantId?: Prisma.IntFilter<"Order"> | number
   restaurant?: Prisma.XOR<Prisma.RestaurantScalarRelationFilter, Prisma.RestaurantWhereInput>
   items?: Prisma.OrderItemListRelationFilter
@@ -260,6 +268,7 @@ export type OrderOrderByWithRelationInput = {
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  estimatedReadyAt?: Prisma.SortOrderInput | Prisma.SortOrder
   restaurantId?: Prisma.SortOrder
   restaurant?: Prisma.RestaurantOrderByWithRelationInput
   items?: Prisma.OrderItemOrderByRelationAggregateInput
@@ -276,6 +285,7 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringFilter<"Order"> | string
   address?: Prisma.StringFilter<"Order"> | string
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
+  estimatedReadyAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   restaurantId?: Prisma.IntFilter<"Order"> | number
   restaurant?: Prisma.XOR<Prisma.RestaurantScalarRelationFilter, Prisma.RestaurantWhereInput>
   items?: Prisma.OrderItemListRelationFilter
@@ -289,6 +299,7 @@ export type OrderOrderByWithAggregationInput = {
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  estimatedReadyAt?: Prisma.SortOrderInput | Prisma.SortOrder
   restaurantId?: Prisma.SortOrder
   _count?: Prisma.OrderCountOrderByAggregateInput
   _avg?: Prisma.OrderAvgOrderByAggregateInput
@@ -308,6 +319,7 @@ export type OrderScalarWhereWithAggregatesInput = {
   phone?: Prisma.StringWithAggregatesFilter<"Order"> | string
   address?: Prisma.StringWithAggregatesFilter<"Order"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
+  estimatedReadyAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
   restaurantId?: Prisma.IntWithAggregatesFilter<"Order"> | number
 }
 
@@ -318,6 +330,7 @@ export type OrderCreateInput = {
   phone: string
   address: string
   createdAt?: Date | string
+  estimatedReadyAt?: Date | string | null
   restaurant: Prisma.RestaurantCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
 }
@@ -330,6 +343,7 @@ export type OrderUncheckedCreateInput = {
   phone: string
   address: string
   createdAt?: Date | string
+  estimatedReadyAt?: Date | string | null
   restaurantId: number
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
 }
@@ -341,6 +355,7 @@ export type OrderUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimatedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   restaurant?: Prisma.RestaurantUpdateOneRequiredWithoutOrdersNestedInput
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
 }
@@ -353,6 +368,7 @@ export type OrderUncheckedUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimatedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   restaurantId?: Prisma.IntFieldUpdateOperationsInput | number
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
 }
@@ -365,6 +381,7 @@ export type OrderCreateManyInput = {
   phone: string
   address: string
   createdAt?: Date | string
+  estimatedReadyAt?: Date | string | null
   restaurantId: number
 }
 
@@ -375,6 +392,7 @@ export type OrderUpdateManyMutationInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimatedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type OrderUncheckedUpdateManyInput = {
@@ -385,6 +403,7 @@ export type OrderUncheckedUpdateManyInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimatedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   restaurantId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -406,6 +425,7 @@ export type OrderCountOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  estimatedReadyAt?: Prisma.SortOrder
   restaurantId?: Prisma.SortOrder
 }
 
@@ -423,6 +443,7 @@ export type OrderMaxOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  estimatedReadyAt?: Prisma.SortOrder
   restaurantId?: Prisma.SortOrder
 }
 
@@ -434,6 +455,7 @@ export type OrderMinOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  estimatedReadyAt?: Prisma.SortOrder
   restaurantId?: Prisma.SortOrder
 }
 
@@ -494,6 +516,10 @@ export type EnumOrderStatusFieldUpdateOperationsInput = {
   set?: $Enums.OrderStatus
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type OrderCreateNestedOneWithoutItemsInput = {
   create?: Prisma.XOR<Prisma.OrderCreateWithoutItemsInput, Prisma.OrderUncheckedCreateWithoutItemsInput>
   connectOrCreate?: Prisma.OrderCreateOrConnectWithoutItemsInput
@@ -515,6 +541,7 @@ export type OrderCreateWithoutRestaurantInput = {
   phone: string
   address: string
   createdAt?: Date | string
+  estimatedReadyAt?: Date | string | null
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
 }
 
@@ -526,6 +553,7 @@ export type OrderUncheckedCreateWithoutRestaurantInput = {
   phone: string
   address: string
   createdAt?: Date | string
+  estimatedReadyAt?: Date | string | null
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
 }
 
@@ -566,6 +594,7 @@ export type OrderScalarWhereInput = {
   phone?: Prisma.StringFilter<"Order"> | string
   address?: Prisma.StringFilter<"Order"> | string
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
+  estimatedReadyAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   restaurantId?: Prisma.IntFilter<"Order"> | number
 }
 
@@ -576,6 +605,7 @@ export type OrderCreateWithoutItemsInput = {
   phone: string
   address: string
   createdAt?: Date | string
+  estimatedReadyAt?: Date | string | null
   restaurant: Prisma.RestaurantCreateNestedOneWithoutOrdersInput
 }
 
@@ -587,6 +617,7 @@ export type OrderUncheckedCreateWithoutItemsInput = {
   phone: string
   address: string
   createdAt?: Date | string
+  estimatedReadyAt?: Date | string | null
   restaurantId: number
 }
 
@@ -613,6 +644,7 @@ export type OrderUpdateWithoutItemsInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimatedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   restaurant?: Prisma.RestaurantUpdateOneRequiredWithoutOrdersNestedInput
 }
 
@@ -624,6 +656,7 @@ export type OrderUncheckedUpdateWithoutItemsInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimatedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   restaurantId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -635,6 +668,7 @@ export type OrderCreateManyRestaurantInput = {
   phone: string
   address: string
   createdAt?: Date | string
+  estimatedReadyAt?: Date | string | null
 }
 
 export type OrderUpdateWithoutRestaurantInput = {
@@ -644,6 +678,7 @@ export type OrderUpdateWithoutRestaurantInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimatedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
 }
 
@@ -655,6 +690,7 @@ export type OrderUncheckedUpdateWithoutRestaurantInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimatedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
 }
 
@@ -666,6 +702,7 @@ export type OrderUncheckedUpdateManyWithoutRestaurantInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimatedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -707,6 +744,7 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   phone?: boolean
   address?: boolean
   createdAt?: boolean
+  estimatedReadyAt?: boolean
   restaurantId?: boolean
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Order$itemsArgs<ExtArgs>
@@ -721,6 +759,7 @@ export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   phone?: boolean
   address?: boolean
   createdAt?: boolean
+  estimatedReadyAt?: boolean
   restaurantId?: boolean
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
@@ -733,6 +772,7 @@ export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   phone?: boolean
   address?: boolean
   createdAt?: boolean
+  estimatedReadyAt?: boolean
   restaurantId?: boolean
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
@@ -745,10 +785,11 @@ export type OrderSelectScalar = {
   phone?: boolean
   address?: boolean
   createdAt?: boolean
+  estimatedReadyAt?: boolean
   restaurantId?: boolean
 }
 
-export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "status" | "totalPrice" | "customerName" | "phone" | "address" | "createdAt" | "restaurantId", ExtArgs["result"]["order"]>
+export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "status" | "totalPrice" | "customerName" | "phone" | "address" | "createdAt" | "estimatedReadyAt" | "restaurantId", ExtArgs["result"]["order"]>
 export type OrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   restaurant?: boolean | Prisma.RestaurantDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Order$itemsArgs<ExtArgs>
@@ -775,6 +816,7 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     phone: string
     address: string
     createdAt: Date
+    estimatedReadyAt: Date | null
     restaurantId: number
   }, ExtArgs["result"]["order"]>
   composites: {}
@@ -1208,6 +1250,7 @@ export interface OrderFieldRefs {
   readonly phone: Prisma.FieldRef<"Order", 'String'>
   readonly address: Prisma.FieldRef<"Order", 'String'>
   readonly createdAt: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly estimatedReadyAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly restaurantId: Prisma.FieldRef<"Order", 'Int'>
 }
     

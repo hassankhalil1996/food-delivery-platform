@@ -786,6 +786,7 @@ export const OrderScalarFieldEnum = {
   phone: 'phone',
   address: 'address',
   createdAt: 'createdAt',
+  estimatedReadyAt: 'estimatedReadyAt',
   restaurantId: 'restaurantId'
 } as const
 
