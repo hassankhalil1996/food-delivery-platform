@@ -143,4 +143,56 @@ router.patch("/:orderId/accept", async (req, res) => {
   }
 });
 
+
+// Reject order
+router.patch("/:orderId/reject", async (req, res) => {
+  try {
+    const orderId = Number(req.params.orderId);
+
+    const order = await prisma.order.update({
+      where: {
+        id: orderId,
+      },
+      data: {
+        status: "REJECTED",
+      },
+    });
+
+    res.json(order);
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      error: "Failed to reject order",
+    });
+  }
+});
+
+
+// Get all orders
+router.get("/", async (req, res) => {
+  try {
+    const orders = await prisma.order.findMany({
+      include: {
+        restaurant: true,
+        items: {
+          include: {
+            menuItem: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    res.json(orders);
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      error: "Failed to get orders",
+    });
+  }
+});
 export default router;
