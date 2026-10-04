@@ -113,4 +113,34 @@ router.patch("/:orderId/status", async (req, res) => {
 });
 
 
+// Accept order and set estimated ready time
+router.patch("/:orderId/accept", async (req, res) => {
+  try {
+    const orderId = Number(req.params.orderId);
+    const { preparationMinutes } = req.body;
+
+    const estimatedReadyAt = new Date(
+      Date.now() + preparationMinutes * 60 * 1000
+    );
+
+    const order = await prisma.order.update({
+      where: {
+        id: orderId,
+      },
+      data: {
+        status: "ACCEPTED",
+        estimatedReadyAt,
+      },
+    });
+
+    res.json(order);
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      error: "Failed to accept order",
+    });
+  }
+});
+
 export default router;
