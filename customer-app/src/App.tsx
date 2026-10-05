@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 
+import "./App.css";
+
+import MenuItemCard from "./components/MenuItemCard";
+
 type MenuItem = {
   id: number;
   name: string;
@@ -25,18 +29,20 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>Napoli Pizza</h1>
+  <main className="app">
+    <h1>Napoli Pizza</h1>
 
-      {menuItems.map((item) => (
-        <div key={item.id}>
-          <h2>{item.name}</h2>
-          <p>{item.description}</p>
-          <p>₪{item.price}</p>
-        </div>
-      ))}
-    </div>
-  );
+    {menuItems.map((item) => (
+      <MenuItemCard
+        key={item.id}
+        name={item.name}
+        description={item.description}
+        price={item.price}
+        imageUrl={item.imageUrl}
+      />
+    ))}
+  </main>
+);
 }
 
 export default App;
