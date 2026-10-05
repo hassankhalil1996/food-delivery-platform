@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 import MenuItemCard from "./components/MenuItemCard/MenuItemCard";
+import CartBar from "./components/CartBar/CartBar";
 
 import type { MenuItem } from "./types/MenuItem";
 import type { CartItem } from "./types/CartItem";
+
 
 function App() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
@@ -65,6 +67,8 @@ function App() {
           onAdd={() => addToCart(item)}
         />
       ))}
+
+      <CartBar cart={cart} />
     </main>
   );
 }
