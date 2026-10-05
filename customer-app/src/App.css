@@ -1,13 +1,115 @@
 .app {
   width: 100%;
   max-width: 600px;
-
   margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 20px 16px 100px;
 }
 
-.app h1 {
-  margin-top: 0;
-  margin-bottom: 24px;
+.restaurant-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 4px 22px;
+}
+
+.restaurant-logo {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff0e6;
+  border-radius: 18px;
+
+  font-size: 30px;
+}
+
+.restaurant-header h1 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.1;
+  color: #1d1d1f;
+}
+
+.restaurant-subtitle {
+  margin: 6px 0 0;
+  color: #777;
+  font-size: 14px;
+}
+
+/* Delivery information */
+
+.delivery-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  padding: 16px 10px;
+  margin-bottom: 32px;
+
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 18px;
+}
+
+.delivery-info > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  text-align: center;
+}
+
+.delivery-info > div:not(:last-child) {
+  border-right: 1px solid #eeeeee;
+}
+
+.info-label {
+  color: #888;
+  font-size: 12px;
+}
+
+.delivery-info strong {
+  color: #222;
+  font-size: 14px;
+}
+
+/* Menu */
+
+.menu-section {
+  width: 100%;
+}
+
+.menu-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  margin-bottom: 16px;
+}
+
+.section-label {
+  color: #d62828;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.menu-heading h2 {
+  margin: 3px 0 0;
+  font-size: 22px;
+  color: #202020;
+}
+
+.item-count {
+  color: #888;
+  font-size: 13px;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
