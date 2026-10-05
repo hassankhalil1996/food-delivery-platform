@@ -5,6 +5,7 @@ type MenuItemCardProps = {
   description: string | null;
   price: string;
   imageUrl: string | null;
+  onAdd: () => void;
 };
 
 function MenuItemCard({
@@ -12,6 +13,7 @@ function MenuItemCard({
   description,
   price,
   imageUrl,
+  onAdd,
 }: MenuItemCardProps) {
   return (
     <div className="menu-item-card">
@@ -25,7 +27,9 @@ function MenuItemCard({
         <div className="menu-item-bottom">
           <span className="menu-item-price">₪{price}</span>
 
-          <button className="add-button">+</button>
+          <button className="add-button" onClick={onAdd}>
+            +
+          </button>
         </div>
       </div>
 
